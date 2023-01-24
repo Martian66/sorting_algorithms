@@ -4,30 +4,38 @@
  * selection_sort - function that sorts an array in ascending order
  * @size: Size of the array
  * @array: the array of integers.
+ *
+ * Return: No value
  */
 
 void selection_sort(int *array, size_t size);
 {
-	size_t i, k;
-	int min, tmp, idx;
+	size_t i = 0, k = 1, tmp = 0, min = 0, limit = size - 1;
 
-	for (i = 0; i < size; i++)
+	if (size < 2)
+		return;
+
+	while (i < limit)
 	{
-		min = array[i];
-		for (k = i + 1; k < size; k++)
+		if (j == size)
 		{
-			if (min > array[k])
+			if (i != min)
 			{
-				min = array[k];
-				idx = k;
+				tmp = array[i];
+				array[i] = array[min];
+				array[min] = tmp;
+				print_array(array, size);
 			}
+
+			++i;
+			min = i;
+			k = i + 1;
+			continue;
 		}
-		if (min != array[i])
-		{
-			tmp = array[i];
-			array[i] = min;
-			array[idx] = tmp;
-			print_array(array, size);
-		}
+
+		if (array[min] > array[k])
+			min = k;
+
+		++k;
 	}
 }
